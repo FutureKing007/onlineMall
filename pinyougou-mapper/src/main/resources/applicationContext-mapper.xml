@@ -37,6 +37,11 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <!--整合通用mapper-->
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.pinyougou.mapper"/>
+    </bean>
+
     <!--配置开启事务注解驱动-->
     <!--配置开启事务注解驱动,由于dubbo用@service注解暴露服务业务成需要加事务会产生代理对象,需设置为true采用cglib产生代理-->
     <tx:annotation-driven proxy-target-class="true"/>

@@ -50,5 +50,12 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!--pagehelper-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+        </dependency>
+
+
     </dependencies>
 </project>
