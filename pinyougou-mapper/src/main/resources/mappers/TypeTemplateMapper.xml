@@ -4,5 +4,13 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pinyougou.mapper.TypeTemplateMapper">
-
+ 	<select id="findAll" resultType="TypeTemplate">
+		SELECT * FROM tb_type_template
+		<if test="name != null and name == ''">
+			<where>
+				name LIKE concat('%',#{name},'%')
+			</where>
+		</if>
+		order by id asc
+	</select>
 </mapper>

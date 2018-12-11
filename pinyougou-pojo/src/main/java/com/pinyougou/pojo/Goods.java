@@ -69,7 +69,7 @@ public class Goods implements Serializable{
 	@Transient
     private GoodsDesc goodsDesc;
     /** 商品SKU列表 */
-	@Transient
+    @Transient
     private List<Item> items;
     
     /** setter and getter method */
