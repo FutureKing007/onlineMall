@@ -53,7 +53,7 @@ app.controller('itemCatController', function($scope, $controller, baseService){
                 .then(function(response){
                     if (response.data){
                         /** 重新加载数据 */
-                        $scope.reload();
+                        $scope.findItemCatByParentId(0);
                     }else{
                         alert("删除失败！");
                     }
@@ -66,7 +66,10 @@ app.controller('itemCatController', function($scope, $controller, baseService){
     $scope.findItemCatByParentId = function (parentId) {
         $scope.parentId = parentId;
         baseService.sendGet("/itemCat/findItemCatByParentId", "parentId=" + parentId).then(function (response) {
-            $scope.dataList = response.data
+            $scope.dataList = response.data;
+            $scope.ids = [];
+            $scope.checkArr = [];
+            $scope.ckAll = false;
         })
     };
 

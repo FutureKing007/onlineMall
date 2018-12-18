@@ -45,17 +45,22 @@ app.controller('goodsController', function($scope, $controller, baseService){
     /** 批量删除 */
     $scope.delete = function(){
         if ($scope.ids.length > 0){
-            baseService.deleteById("/goods/delete", $scope.ids)
-                .then(function(response){
-                    if (response.data){
-                        /** 重新加载数据 */
-                        $scope.reload();
-                    }else{
-                        alert("删除失败！");
-                    }
+            baseService.sendGet("/goods/updateStatus?columnName=is_delete&ids=" + $scope.ids + "&status=1")
+                .then(function (response) {
+                    $scope.reload();
                 });
-        }else{
+        }else {
             alert("请选择要删除的记录！");
         }
     };
+
+    $scope.status = ['未审核','审核通过','审核未通过','关闭'];
+
+    $scope.updateStatus = function (status) {
+        baseService.sendGet("/goods/updateStatus?columnName=audit_status&ids=" + $scope.ids + "&status=" + status)
+            .then(function (response) {
+                $scope.reload();
+        });
+    };
+
 });

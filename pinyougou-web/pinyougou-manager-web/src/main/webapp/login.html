@@ -11,9 +11,15 @@
 
     <link rel="stylesheet" type="text/css" href="css/webbase.css" />
     <link rel="stylesheet" type="text/css" href="css/pages-login-manage.css" />
+	<script src="/plugins/angularjs/angular.min.js"></script>
+	<script src="/js/base.js"></script>
+	<script src="/js/service/baseService.js"></script>
+	<script src="/js/controller/baseController.js"></script>
+	<script src="/js/controller/vcodeController.js"></script>
+
 </head>
 
-<body>
+<body ng-app="pinyougou" ng-controller="vcodeController" ng-init="loadVCode();">
 	<div class="loginmanage">
 		<div class="py-container">
 			<h4 class="manage-title">品优购运营商运营管理后台</h4>
@@ -49,6 +55,14 @@
 									<div id="slider_bg"></div>
 									<span id="label">>></span> <span id="labelTip">拖动滑块验证</span>
 									</div>
+							</div>
+							<div>
+								<div style="float:left;">
+									<input name="check" type="text" placeholder="请输入验证码" autocomplete="off">
+								</div>
+								<div>
+									<img src="{{vcodeURL}}" style="cursor: pointer" title="看不清,点击刷新" ng-click="loadVCode();">
+								</div>
 							</div>
 							<div class="logined">
 								<a class="sui-btn btn-block btn-xlarge btn-danger" onclick="loginForm.submit();">登&nbsp;&nbsp;录</a>

@@ -15,6 +15,8 @@
     <module>pinyougou-interface</module>
     <module>pinyougou-service</module>
     <module>pinyougou-web</module>
+      <module>pinyougou-solr-util</module>
+      <module>pinyougou-install</module>
   </modules>
 
   <!-- 定义全局的属性(定义依赖jar包的版本号) -->

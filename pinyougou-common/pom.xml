@@ -11,5 +11,18 @@
 
     <artifactId>pinyougou-common</artifactId>
 
+    <dependencies>
+        <!--配置jedis-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
 
+        <!--配置Sprin-DataRedis-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+        </dependency>
+
+    </dependencies>
 </project>

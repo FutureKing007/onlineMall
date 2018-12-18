@@ -11,11 +11,20 @@
 
     <artifactId>pinyougou-pojo</artifactId>
 
-    <!--通用Mapper-->
     <dependencies>
-    <dependency>
-        <groupId>tk.mybatis</groupId>
-        <artifactId>mapper</artifactId>
-    </dependency>
+        <!--通用Mapper-->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+        </dependency>
+
+        <!--配置spring-Data-solr-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-solr</artifactId>
+            <version>1.5.6.RELEASE</version>
+        </dependency>
+
     </dependencies>
+
 </project>

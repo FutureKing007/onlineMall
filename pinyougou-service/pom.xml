@@ -13,6 +13,8 @@
     <name>pinyougou-service</name>
     <modules>
         <module>pinyougou-sellergoods-service</module>
+        <module>pinyougou-content-service</module>
+        <module>pinyougou-search-service</module>
     </modules>
 
     <properties>

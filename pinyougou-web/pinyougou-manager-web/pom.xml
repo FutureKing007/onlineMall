@@ -13,4 +13,16 @@
     <!--覆盖付工程中的port属性-->
     <port>9101</port>
   </properties>
+
+  <!--配置fastdfs-client-->
+  <dependencies>
+    <dependency>
+      <groupId>org.csource</groupId>
+      <artifactId>fastdfs-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+    </dependency>
+  </dependencies>
 </project>

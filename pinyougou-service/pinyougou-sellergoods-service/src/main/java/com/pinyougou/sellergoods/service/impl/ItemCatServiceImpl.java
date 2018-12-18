@@ -6,7 +6,10 @@ import com.pinyougou.pojo.ItemCat;
 import com.pinyougou.service.ItemCatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 @Service(interfaceName ="com.pinyougou.service.ItemCatService" )
@@ -29,6 +32,38 @@ public class ItemCatServiceImpl implements ItemCatService {
             itemCatMapper.insertSelective(itemCat);
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void update(ItemCat itemCat) {
+        try {
+            itemCatMapper.updateByPrimaryKeySelective(itemCat);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void delete(Serializable[] ids) {
+        Example example = new Example(ItemCat.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andIn("id", Arrays.asList(ids));
+        itemCatMapper.deleteByExample(example);
+        for(Serializable id:ids){
+            deleteByParentIdRecursion(id);
+        }
+    }
+
+    public  void deleteByParentIdRecursion(Serializable id) {
+        ItemCat itemCat = new ItemCat();
+        itemCat.setParentId((Long) id);
+        List<ItemCat> itemCatList = itemCatMapper.select(itemCat);
+        if (itemCatList!=null && itemCatList.size() > 0) {
+            for(ItemCat itemCatDeleted:itemCatList){
+                itemCatMapper.delete(itemCatDeleted);
+                deleteByParentIdRecursion(itemCatDeleted.getId());
+            }
         }
     }
 }

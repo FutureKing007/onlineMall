@@ -11,6 +11,7 @@
     <security:http pattern="/img/**" security="none"/>
     <security:http pattern="/js/**" security="none"/>
     <security:http pattern="/plugins/**" security="none"/>
+    <security:http pattern="/code" security="none"/>
 
 <!--authentication-success-forward-url="/admin/index.html"-->
     <!--authentication-failure-forward-url="/login.html"-->

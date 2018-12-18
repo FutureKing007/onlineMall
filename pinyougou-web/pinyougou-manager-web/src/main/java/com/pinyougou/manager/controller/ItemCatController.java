@@ -29,4 +29,26 @@ public class ItemCatController {
         }
         return false;
     }
+
+    @PostMapping("/update")
+    public boolean update(@RequestBody ItemCat itemCat) {
+        try {
+            itemCatService.update(itemCat);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @GetMapping("/delete")
+    public boolean save(Long[] ids) {
+        try {
+            itemCatService.delete(ids);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

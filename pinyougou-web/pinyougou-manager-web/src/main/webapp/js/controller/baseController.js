@@ -81,7 +81,7 @@ app.controller("baseController", function($scope){
     $scope.checkAll = function ($event) {
         $scope.ids = [];
 
-        for(var i in $scope.dataList) {
+        for(var i = 0; i < $scope.dataList.length; i++) {
             $scope.checkArr[i] = $event.target.checked;
             if($scope.checkArr[i]) {
                 $scope.ids.push($scope.dataList[i].id);
@@ -90,4 +90,10 @@ app.controller("baseController", function($scope){
 
         $scope.ckAll == $scope.dataList.length == $scope.ids.length;
     };
+
+    // $scope.uncheckAll = function () {
+    //     for(var i in $scope.dataList) {
+    //         $scope.checkArr[i] = false;
+    //     }
+    // };
 });
