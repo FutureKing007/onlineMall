@@ -20,7 +20,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-
 //        创建List集合封装角色
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 //        添加角色

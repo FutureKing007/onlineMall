@@ -1,10 +1,4 @@
 package com.pinyougou.sellergoods.service.impl;
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.ISelect;
@@ -19,6 +13,10 @@ import com.pinyougou.pojo.ItemCat;
 import com.pinyougou.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
+
+import java.io.Serializable;
+import java.util.*;
 
 @Service(interfaceName = "com.pinyougou.service.GoodsService")
 @Transactional
@@ -143,6 +141,57 @@ public class GoodsServiceimpl implements GoodsService {
             goodsMapper.updateStatus(columnName, ids, status);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Map<String, Object> getGoods(Serializable goodsId) {
+        //创建dataModel作为返回对象
+        Map<String, Object> dataModel = new HashMap<>();
+        //根据goodsId查到goods (tb_goods)
+        Goods goods = goodsMapper.selectByPrimaryKey(goodsId);
+        //根据goodsId查到goodsDesc (tb_goods_desc)
+        GoodsDesc goodsDesc = goodsDescMapper.selectByPrimaryKey(goodsId);
+
+        dataModel.put("goods", goods);
+        dataModel.put("goodsDesc", goodsDesc);
+
+        if (goods != null && goods.getCategory3Id() != null) {
+            String itemCat1 = itemCatMapper.selectByPrimaryKey(goods.getCategory1Id()).getName();
+            String itemCat2 = itemCatMapper.selectByPrimaryKey(goods.getCategory2Id()).getName();
+            String itemCat3 = itemCatMapper.selectByPrimaryKey(goods.getCategory3Id()).getName();
+            dataModel.put("itemCat1",itemCat1);
+            dataModel.put("itemCat2",itemCat2);
+            dataModel.put("itemCat3",itemCat3);
+        }
+
+        //根据goodsId查询Items (tb_item)
+        //创建Example对象
+        Example example = new Example(Item.class);
+        //创建条件对象
+        Example.Criteria criteria = example.createCriteria();
+        //设置条件
+        criteria.andEqualTo("goodsId", goodsId);
+        criteria.andEqualTo("status", 1);
+        //设置排序
+        example.orderBy("isDefault").desc();
+        //执行查询
+        List<Item> itemList = itemMapper.selectByExample(example);
+        //放进dataModel
+        dataModel.put("itemList", JSON.toJSONString(itemList));
+        //返回数据
+        return dataModel;
+    }
+
+    @Override
+    public List<Item> findItemByGoodsId(Serializable[] ids) {
+        try {
+            Example example = new Example(Item.class);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andIn("goodsId", Arrays.asList(ids));
+            return itemMapper.selectByExample(example);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

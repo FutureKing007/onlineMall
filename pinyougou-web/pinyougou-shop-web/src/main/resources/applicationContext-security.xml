@@ -3,7 +3,12 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:security="http://www.springframework.org/schema/security"
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd
+        http://code.alibabatech.com/schema/dubbo
+         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 <!--###################配置http 请求URL拦截规则######################-->
     <!--配置放行资源-->
@@ -18,30 +23,54 @@
 <!--authentication-success-forward-url="/admin/index.html"-->
     <!--authentication-failure-forward-url="/login.html"-->
 
-    <security:http>
-        <!--配置拦截验证-->
-        <security:intercept-url pattern="/**" access="hasRole('SELLER')"/>
+    <!--<security:http>-->
+        <!--&lt;!&ndash;配置拦截验证&ndash;&gt;-->
+        <!--<security:intercept-url pattern="/**" access="hasRole('SELLER')"/>-->
         <!--配置表单登录信息-->
-        <security:form-login login-page="/shoplogin.html"
-                             login-processing-url="/login"
-                             default-target-url="/admin/index.html"
-                             always-use-default-target="true"
-                             authentication-failure-url="/shoplogin.html"/>
+        <!--<security:form-login login-page="/shoplogin.html"-->
+                             <!--login-processing-url="/login"-->
+                             <!--default-target-url="/admin/index.html"-->
+                             <!--always-use-default-target="true"-->
+                             <!--authentication-failure-url="/shoplogin.html"/>-->
 
+        <!--&lt;!&ndash;关闭CSRF跨站点请求伪造&ndash;&gt;-->
+        <!--<security:csrf disabled="true"/>-->
+        <!--&lt;!&ndash;配置头,指定框架页策略&ndash;&gt;-->
+        <!--<security:headers>-->
+            <!--<security:frame-options policy="SAMEORIGIN"/>-->
+        <!--</security:headers>-->
+        <!--&lt;!&ndash;配置退出登录&ndash;&gt;-->
+        <!--<security:logout logout-url="/logout" invalidate-session="true"/>-->
+    <!--</security:http>-->
+    <!--配置登录入口-->
+    <security:http entry-point-ref="authenticationEntryPoint">
+        <!--<security:form-login login-page="/shoplogin.html"-->
+                             <!--login-processing-url="/user/login"/>-->
+        <security:intercept-url pattern="/user/login" access="permitAll()"/>
+        <!--配置拦截的请求的URL,需要用什么角色或权限访问ROLE_*-->
+        <security:intercept-url pattern="/**" access="hasAnyRole('SELLER')"/>
+
+        <!--配置登录失败-->
         <!--关闭CSRF跨站点请求伪造-->
         <security:csrf disabled="true"/>
         <!--配置头,指定框架页策略-->
         <security:headers>
-            <security:frame-options policy="SAMEORIGIN"/>
+        <security:frame-options policy="SAMEORIGIN"/>
         </security:headers>
         <!--配置退出登录-->
         <security:logout logout-url="/logout" invalidate-session="true"/>
     </security:http>
 
+    <!--配置登录入口bean-->
+    <bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <constructor-arg value="/shoplogin.html"/>
+    </bean>
+
+    <!--配置加密器-->
     <bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
     <!--################配置身份认证管理器##########################-->
-    <security:authentication-manager>
+    <security:authentication-manager id="authenticationManager">
         <!--配置认证提供者-->
         <security:authentication-provider user-service-ref="userDetailsService">
             <!--配置用户服务作为认证提供者-->
@@ -49,6 +78,10 @@
         </security:authentication-provider>
     </security:authentication-manager>
 
+    <!--认证提供者-->
+    <bean id="userDetailsService" class="com.pinyougou.shop.service.UserDetailsServiceImpl">
+        <property name="sellerService" ref="sellerService"/>
+    </bean>
 
     <!--############配置dubbo服务消费者#############-->
     <!--配置当前应用的名称-->
@@ -57,10 +90,5 @@
     <dubbo:registry address="zookeeper://192.168.12.131:2181"/>
     <!--配置引用单个服务,产生服务接口代理对象-->
     <dubbo:reference id="sellerService" interface="com.pinyougou.service.SellerService"/>
-
-    <bean id="userDetailsService" class="com.pinyougou.shop.service.UserDetailsServiceImpl">
-        <property name="sellerService" ref="sellerService"/>
-    </bean>
-
 
 </beans>

@@ -46,7 +46,6 @@ public class SolrUtils {
             solrItem.setBrand(item.getBrand());
             solrItem.setSeller(item.getSeller());
             solrItem.setUpdateTime(item.getUpdateTime());
-
             //封装spec
             //先用Json解析
             Map specMap = JSON.parseObject(item.getSpec(), Map.class);

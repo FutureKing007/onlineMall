@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.pinyougou.service.ItemSearchService;
 import com.pinyougou.solr.SolrItem;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.solr.core.SolrTemplate;
@@ -14,6 +15,7 @@ import org.springframework.data.solr.core.query.result.ScoredPage;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 @Service(interfaceName = "com.pinyougou.service.ItemSearchService")
 @Transactional
@@ -119,6 +121,7 @@ public class ItemSearchServiceImpl implements ItemSearchService {
         }
         return data;
     }
+
     //过滤分类方法
     private void filterCategory(Query highlightQuery,Map<String, Object> params) {
         String category = (String) params.get("category");
@@ -200,6 +203,36 @@ public class ItemSearchServiceImpl implements ItemSearchService {
             Sort sort = new Sort("ASC".equalsIgnoreCase(sortValue)? Sort.Direction.ASC: Sort.Direction.DESC,sortField);
             highlightQuery.addSort(sort);
         }
+    }
+
+    //保存或更新方法
+    @Override
+    public void saveOrUpdate(List<SolrItem> solrItems) {
+        UpdateResponse updateResponse = solrTemplate.saveBeans(solrItems);
+        if (updateResponse.getStatus() == 0) {
+            solrTemplate.commit();
+        } else {
+            solrTemplate.rollback();
+        }
+    }
+
+    @Override
+    public void delete(List<Long> goodsIds) {
+        //先创建查询对象
+        Query query = new SimpleQuery();
+        //创建条件对象
+        Criteria criteria = new Criteria("goodsId").in(goodsIds);
+        //添加条件
+        query.addCriteria(criteria);
+        //根据查询对象删除
+        UpdateResponse updateResponse = solrTemplate.delete(query);
+
+        if (updateResponse.getStatus() == 0) {
+            solrTemplate.commit();
+        } else {
+            solrTemplate.rollback();
+        }
+
     }
 
 }
