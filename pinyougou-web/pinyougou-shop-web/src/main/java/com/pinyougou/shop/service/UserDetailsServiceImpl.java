@@ -1,7 +1,7 @@
 package com.pinyougou.shop.service;
 
 import com.pinyougou.pojo.Seller;
-import com.pinyougou.service.SellerService;
+import com.pinyougou.cart.service.SellerService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

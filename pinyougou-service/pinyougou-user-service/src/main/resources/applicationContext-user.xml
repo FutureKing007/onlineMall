@@ -5,9 +5,13 @@
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <!--配置加载属性文件-->
-    <context:property-placeholder location="classpath*:props/*.properties"/>
-    <!--把jdbc.properties 加载过来-->
+    <!-- 配置加载属性文件 -->
+    <context:property-placeholder
+            location="classpath*:props/*.properties"/>
+    <!-- 导入数据访问配置文件 -->
+    <import resource="classpath:applicationContext-mapper.xml"/>
+    <!-- 导入redis配置文件 -->
+    <import resource="classpath:applicationContext-redis.xml"/>
 
 
     <!--配置dubbo服务提供者-->

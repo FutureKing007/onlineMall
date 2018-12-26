@@ -12,5 +12,14 @@
   <properties> 
     <!--更改tomcat端口号-->  
     <port>9103</port> 
-  </properties> 
+  </properties>
+
+  <dependencies>
+    <!-- cas-client-core -->
+    <dependency>
+      <groupId>org.jasig.cas.client</groupId>
+      <artifactId>cas-client-core</artifactId>
+    </dependency>
+  </dependencies>
+
 </project>

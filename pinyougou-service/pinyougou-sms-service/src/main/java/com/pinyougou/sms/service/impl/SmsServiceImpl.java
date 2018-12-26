@@ -7,7 +7,7 @@ import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
-import com.pinyougou.service.SmsService;
+import com.pinyougou.cart.service.SmsService;
 import org.springframework.beans.factory.annotation.Value;
 
 

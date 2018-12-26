@@ -1,7 +1,7 @@
 package com.pinyougou.search.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.pinyougou.service.ItemSearchService;
+import com.pinyougou.cart.service.ItemSearchService;
 import com.pinyougou.solr.SolrItem;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.solr.client.solrj.response.UpdateResponse;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-@Service(interfaceName = "com.pinyougou.service.ItemSearchService")
+@Service(interfaceName = "ItemSearchService")
 @Transactional
 public class ItemSearchServiceImpl implements ItemSearchService {
 

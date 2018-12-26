@@ -1,7 +1,7 @@
 package com.pinyougou.sms.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.pinyougou.service.SmsService;
+import com.pinyougou.cart.service.SmsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

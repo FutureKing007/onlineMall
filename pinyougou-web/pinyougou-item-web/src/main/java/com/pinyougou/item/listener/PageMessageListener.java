@@ -1,7 +1,7 @@
 package com.pinyougou.item.listener;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.pinyougou.service.GoodsService;
+import com.pinyougou.cart.service.GoodsService;
 import freemarker.template.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
