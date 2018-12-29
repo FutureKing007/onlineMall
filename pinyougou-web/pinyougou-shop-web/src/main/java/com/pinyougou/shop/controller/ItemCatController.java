@@ -2,7 +2,7 @@ package com.pinyougou.shop.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.pojo.ItemCat;
-import com.pinyougou.cart.service.ItemCatService;
+import com.pinyougou.service.ItemCatService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

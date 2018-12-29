@@ -1,7 +1,7 @@
 package com.pinyougou.search.listener;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.pinyougou.cart.service.ItemSearchService;
+import com.pinyougou.service.ItemSearchService;
 import org.springframework.jms.listener.SessionAwareMessageListener;
 
 import javax.jms.JMSException;

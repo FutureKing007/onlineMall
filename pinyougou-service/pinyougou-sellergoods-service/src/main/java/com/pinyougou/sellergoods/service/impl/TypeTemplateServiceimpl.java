@@ -10,7 +10,7 @@ import com.pinyougou.mapper.SpecificationOptionMapper;
 import com.pinyougou.mapper.TypeTemplateMapper;
 import com.pinyougou.pojo.SpecificationOption;
 import com.pinyougou.pojo.TypeTemplate;
-import com.pinyougou.cart.service.TypeTemplateService;
+import com.pinyougou.service.TypeTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-@Service(interfaceName = "TypeTemplateService")
+@Service(interfaceName = "com.pinyougou.service.TypeTemplateService")
 @Transactional
 public class TypeTemplateServiceimpl implements TypeTemplateService {
 

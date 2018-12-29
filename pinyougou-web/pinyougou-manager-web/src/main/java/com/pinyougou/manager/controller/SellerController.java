@@ -3,7 +3,7 @@ package com.pinyougou.manager.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.common.pojo.PageResult;
 import com.pinyougou.pojo.Seller;
-import com.pinyougou.cart.service.SellerControllerService;
+import com.pinyougou.service.SellerControllerService;
 import com.pinyougou.utils.ConvertEnodingUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

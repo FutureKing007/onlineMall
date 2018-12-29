@@ -9,7 +9,7 @@ import com.pinyougou.mapper.SpecificationMapper;
 import com.pinyougou.mapper.SpecificationOptionMapper;
 import com.pinyougou.pojo.Specification;
 import com.pinyougou.pojo.SpecificationOption;
-import com.pinyougou.cart.service.SpecificationService;
+import com.pinyougou.service.SpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-@Service(interfaceName = "SpecificationService")
+@Service(interfaceName = "com.pinyougou.service.SpecificationService")
 @Transactional
 public class SpecificationServiceimpl implements SpecificationService {
 

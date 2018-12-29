@@ -7,13 +7,13 @@ import com.github.pagehelper.PageInfo;
 import com.pinyougou.common.pojo.PageResult;
 import com.pinyougou.mapper.SellerMapper;
 import com.pinyougou.pojo.Seller;
-import com.pinyougou.cart.service.SellerControllerService;
+import com.pinyougou.service.SellerControllerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
-@Service(interfaceName = "SellerControllerService")
+@Service(interfaceName = "com.pinyougou.service.SellerControllerService")
 @Transactional
 public class SellerControllerServiceImpl implements SellerControllerService {
 

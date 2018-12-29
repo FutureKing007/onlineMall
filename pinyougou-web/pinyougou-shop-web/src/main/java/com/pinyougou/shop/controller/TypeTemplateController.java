@@ -2,7 +2,7 @@ package com.pinyougou.shop.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.pojo.TypeTemplate;
-import com.pinyougou.cart.service.TypeTemplateService;
+import com.pinyougou.service.TypeTemplateService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

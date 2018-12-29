@@ -1,7 +1,7 @@
 package com.pinyougou.item.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.pinyougou.cart.service.GoodsService;
+import com.pinyougou.service.GoodsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

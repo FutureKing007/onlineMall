@@ -12,6 +12,7 @@
 	<#--引入Angular-->
 	<script src="/plugins/angularjs/angular.min.js"></script>
 	<script src="/js/base.js"></script>
+	<script src="/js/controller/baseController.js"></script>
 	<script src="/js/controller/itemController.js"></script>
 
     <script type="text/javascript">
@@ -20,7 +21,7 @@
     </script>
 </head>
 
-<body ng-app="pinyougou" ng-controller="itemController" ng-init="num = 1;loadSku();">
+<body ng-app="pinyougou" ng-controller="itemController" ng-init="num = 1;loadSku();loadUsername();">
 	<#include "header.ftl"/>
 	<div class="py-container">
 		<div id="item">
@@ -128,7 +129,6 @@
 									</dd>
 									</#list>
 								</dl>
-								{{specItems}}
 							</div>
 						</#list>
 						<div class="summary-wrap">
@@ -144,7 +144,7 @@
 							<div class="fl">
 								<ul class="btn-choose unstyled">
 									<li>
-										<a href="cart.html" target="_blank" class="sui-btn  btn-danger addshopcar" ng-click="addToCart();">加入购物车</a>
+                                        <a href="javascript:;" target="_blank" class="sui-btn  btn-danger addshopcar" ng-click="addToCart();">加入购物车</a>
 									</li>
 								</ul>
 							</div>

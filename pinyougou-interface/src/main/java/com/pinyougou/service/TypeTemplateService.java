@@ -1,4 +1,4 @@
-package com.pinyougou.cart.service;
+package com.pinyougou.service;
 
 import com.pinyougou.common.pojo.PageResult;
 import com.pinyougou.pojo.TypeTemplate;

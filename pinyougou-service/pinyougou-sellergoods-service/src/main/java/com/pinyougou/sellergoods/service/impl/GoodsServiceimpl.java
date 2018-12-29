@@ -10,7 +10,7 @@ import com.pinyougou.pojo.Goods;
 import com.pinyougou.pojo.GoodsDesc;
 import com.pinyougou.pojo.Item;
 import com.pinyougou.pojo.ItemCat;
-import com.pinyougou.cart.service.GoodsService;
+import com.pinyougou.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
@@ -18,7 +18,7 @@ import tk.mybatis.mapper.entity.Example;
 import java.io.Serializable;
 import java.util.*;
 
-@Service(interfaceName = "GoodsService")
+@Service(interfaceName = "com.pinyougou.service.GoodsService")
 @Transactional
 public class GoodsServiceimpl implements GoodsService {
 

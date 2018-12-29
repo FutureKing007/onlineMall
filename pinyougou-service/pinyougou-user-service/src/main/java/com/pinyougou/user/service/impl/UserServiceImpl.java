@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.pinyougou.mapper.UserMapper;
 import com.pinyougou.pojo.User;
-import com.pinyougou.cart.service.UserService;
+import com.pinyougou.service.UserService;
 import com.pinyougou.utils.HttpClientUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-@Service(interfaceName ="UserService")
+@Service(interfaceName ="com.pinyougou.service.UserService")
 @Transactional
 public class UserServiceImpl implements UserService {
 

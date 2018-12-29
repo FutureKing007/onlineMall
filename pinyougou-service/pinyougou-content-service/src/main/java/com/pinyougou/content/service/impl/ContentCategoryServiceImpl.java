@@ -7,7 +7,7 @@ import com.github.pagehelper.PageInfo;
 import com.pinyougou.common.pojo.PageResult;
 import com.pinyougou.mapper.ContentCategoryMapper;
 import com.pinyougou.pojo.ContentCategory;
-import com.pinyougou.cart.service.ContentCategoryService;
+import com.pinyougou.service.ContentCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
@@ -20,7 +20,7 @@ import java.util.List;
  * @date 2018-12-04 15:36:38
  * @version 1.0
  */
-@Service(interfaceName = "ContentCategoryService")
+@Service(interfaceName = "com.pinyougou.service.ContentCategoryService")
 @Transactional
 public class ContentCategoryServiceImpl implements ContentCategoryService {
 

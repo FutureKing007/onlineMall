@@ -1,6 +1,6 @@
 package com.pinyougou.cart.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
-import com.pinyougou.cart.service.CartService;
+import com.pinyougou.service.CartService;
 import com.pinyougou.mapper.ItemMapper;
 import com.pinyougou.pojo.Cart;
 import com.pinyougou.pojo.Item;
@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service(interfaceName = "com.pinyougou.cart.service.CartService")
+@Service(interfaceName = "com.pinyougou.service.CartService")
 @Transactional
 public class CartServiceImpl implements CartService {
 
@@ -130,7 +130,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public void saveCartRedis(String username, List<Cart> carts) {
         System.out.println("往redis中存购物车:" + username);
-        redisTemplate.boundValueOps("cart" + username).set(carts);
+        redisTemplate.boundValueOps("cart_" + username).set(carts);
     }
 
     @Override

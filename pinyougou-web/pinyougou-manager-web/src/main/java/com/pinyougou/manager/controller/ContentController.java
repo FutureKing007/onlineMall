@@ -3,7 +3,7 @@ package com.pinyougou.manager.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.common.pojo.PageResult;
 import com.pinyougou.pojo.Content;
-import com.pinyougou.cart.service.ContentService;
+import com.pinyougou.service.ContentService;
 import java.util.List;
 import org.springframework.web.bind.annotation.*;
 /**

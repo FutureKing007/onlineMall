@@ -3,8 +3,8 @@ package com.pinyougou.search.listener;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
 import com.pinyougou.pojo.Item;
-import com.pinyougou.cart.service.GoodsService;
-import com.pinyougou.cart.service.ItemSearchService;
+import com.pinyougou.service.GoodsService;
+import com.pinyougou.service.ItemSearchService;
 import com.pinyougou.solr.SolrItem;
 import org.springframework.jms.listener.SessionAwareMessageListener;
 

@@ -3,10 +3,11 @@ package com.pinyougou.cart.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
 import com.pinyougou.pojo.Cart;
-import com.pinyougou.cart.service.CartService;
+import com.pinyougou.service.CartService;
 import com.pinyougou.utils.CookieUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,15 +31,24 @@ public class CartController {
 
 
     @GetMapping("/addCart")
+    @CrossOrigin(origins = {"http://item.pinyougou.com","http://search.pinyougou.com"}, allowCredentials = "true")
     public boolean addCart(Long itemId, Integer num) {
+
+
         String username = request.getRemoteUser();
+//        //设置允许跨域访问的域名
+////        response.setHeader("Access-Control-Allow-Origin","http://item.pinyougou.com");
+////
+////        //设置允许操作Cookie
+////        response.setHeader("Access-Control-Allow-Credentials", "true");
+
         try {
             //首先,先获取购物车的集合
             List<Cart>carts =findCart();
 
             carts = cartService.addItemToCart(carts, itemId, num);
 
-            if (StringUtils.isNoneBlank()) {
+            if (StringUtils.isNoneBlank(username)) {
                 cartService.saveCartRedis(username, carts);
             } else {
 

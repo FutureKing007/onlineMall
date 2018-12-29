@@ -1,4 +1,6 @@
-app.controller("itemController", function ($scope) {
+app.controller("itemController", function ($scope,$controller,$http) {
+
+    $controller("baseController",{$scope:$scope});
 
         $scope.num = 1;
 
@@ -43,7 +45,14 @@ app.controller("itemController", function ($scope) {
     };
 
     $scope.addToCart = function () {
-        alert("skuid:" + $scope.sku.id)
+        $http.get("http://cart.pinyougou.com/cart/addCart?itemId=" + $scope.sku.id + "&num=" + $scope.num,{"withCredentials":true})
+            .then(function (response) {
+                if(response.data) {
+                    location.href = "http://cart.pinyougou.com/cart.html";
+                }else {
+                    alert("添加失败!")
+                }
+            });
     };
 
 });

@@ -7,7 +7,7 @@ import com.github.pagehelper.PageInfo;
 import com.pinyougou.common.pojo.PageResult;
 import com.pinyougou.mapper.ContentMapper;
 import com.pinyougou.pojo.Content;
-import com.pinyougou.cart.service.ContentService;
+import com.pinyougou.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +21,7 @@ import java.util.List;
  * @date 2018-12-04 15:36:38
  * @version 1.0
  */
-@Service(interfaceName = "ContentService")
+@Service(interfaceName = "com.pinyougou.service.ContentService")
 @Transactional
 public class ContentServiceImpl implements ContentService {
 

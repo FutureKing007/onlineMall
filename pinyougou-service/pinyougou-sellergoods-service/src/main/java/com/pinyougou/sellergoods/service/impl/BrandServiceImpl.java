@@ -7,7 +7,7 @@ import com.github.pagehelper.PageInfo;
 import com.pinyougou.common.pojo.PageResult;
 import com.pinyougou.mapper.BrandMapper;
 import com.pinyougou.pojo.Brand;
-import com.pinyougou.cart.service.BrandService;
+import com.pinyougou.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-@Service(interfaceName = "BrandService")
+@Service(interfaceName = "com.pinyougou.service.BrandService")
 @Transactional
 public class BrandServiceImpl implements BrandService {
 
